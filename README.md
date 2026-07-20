@@ -1,46 +1,33 @@
 # API to CSV Tool
 
-A small Python CLI tool that fetches user data from a public API, extracts selected fields, flattens nested JSON values, and exports the result to a CSV file.
+A focused Python CLI that downloads user records from a JSON API, maps nested fields, and exports a clean CSV file.
 
 ## Features
 
-- Fetches data from a public API
-- Parses JSON response
-- Extracts selected user fields
-- Flattens nested fields such as address.city and company.name
-- Exports clean data to CSV
-- Logs execution summary
-- Handles failed requests and invalid API responses
-
-## Tech Stack
-
-- Python
-- requests
-- argparse
-- csv
-- logging
+- request timeout and HTTP-status validation;
+- safe extraction of nested address and company fields;
+- graceful handling of invalid JSON and unexpected response shapes;
+- automatic creation of output and log directories;
+- deterministic CSV schema.
 
 ## Usage
 
-python src/main.py <api_url> <output_file>
+```bash
+python -m pip install -r requirements.txt
+python -m src.main https://jsonplaceholder.typicode.com/users data/users.csv
+```
 
-## Example:
+## Exported fields
 
-python src/main.py https://jsonplaceholder.typicode.com/users data/output_users.csv
+`id`, `name`, `username`, `email`, `phone`, `website`, `city`, `company`.
 
-## Output columns
+## Tests
 
-id, name, username, email, city, company, website
+```bash
+python -m pip install -r requirements-dev.txt
+python -m pytest -q
+```
 
-## Example output
+## Stack
 
-The tool creates a CSV file with cleaned user records from the API.
-
-## What I practiced
-
-- Working with API responses
-- Reading JSON data
-- Accessing nested dictionaries
-- Transforming data into flat rows
-- Exporting data to CSV
-- Building a small CLI tool
+Python 3.11+, Requests, argparse, CSV, logging, pytest.

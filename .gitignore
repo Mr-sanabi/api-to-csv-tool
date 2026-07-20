@@ -2,3 +2,10 @@ __pycache__/
 *.pyc
 log.txt
 data/*.csv
+.pytest_cache/
+.venv/
+venv/
+.env
+*.log
+.DS_Store
+Thumbs.db
