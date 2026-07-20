@@ -3,15 +3,17 @@ import logging
 
 def fetch_users(url):
     try:
-        response = requests.get(url, timeout=5)
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
     except requests.exceptions.RequestException as e:
         logging.error(f"Request failed: {e}")
         return None
     
-    if response.status_code != 200:
-        logging.error(f"Bad status code: {response.status_code}")
+    try:
+        data = response.json()
+    except ValueError as error:
+        logging.error(f"Invalid JSON response: {error}")
         return None
     
     logging.info(f"Page fetch successfully: {url}")
-    return response.json()
-        
+    return data

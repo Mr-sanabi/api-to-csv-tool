@@ -1,9 +1,9 @@
 import argparse
 import logging
-from api_client import fetch_users
-from transformer import extract_user_row, extract_user_rows
-from storage import save_csv
-from logger_config import setup_logging
+from src.api_client import fetch_users
+from src.transformer import extract_user_rows
+from src.storage import save_csv
+from src.logger_config import setup_logging
 
 
 def parse_args():
@@ -38,7 +38,7 @@ def main():
     summary = (
         "API to CSV tool summary\n"
         f"Users fetched: {len(users)}\n"
-        f"Rows exportd: {len(rows)}\n"
+        f"Rows exported: {len(rows)}\n"
         f"Output file: {args.output_file}\n"
         )
 

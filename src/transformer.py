@@ -1,12 +1,14 @@
 def extract_user_row(user):
+    address = user.get("address") or {}
+    company = user.get("company") or {}
     result = {
-        "id": user["id"],
-        "name": user["name"],
-        "username": user["username"],
-        "email": user["email"],
-        "city": user["address"]["city"],
-        "company": user["company"]["name"],
-        "website": user["website"]
+        "id": user.get("id"),
+        "name": user.get("name"),
+        "username": user.get("username"),
+        "email": user.get("email"),
+        "city": address.get("city"),
+        "company": company.get("name"),
+        "website": user.get("website")
     }
 
     return result
